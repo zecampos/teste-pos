@@ -1,5 +1,13 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors')
+
+const app = express();
+app.use(cors())
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+const port = process.env.PORT || 3000
 
 app.get('/', function (req, res) {
     console.log('consultou....')
@@ -10,6 +18,6 @@ app.post('/atualizar', function(req, res){
     res.json({pos: "<FILE NAME=testando.txt ADDR=/testando.txt ERR=FILE_RET WRT=SIM>"})
 })
 
-app.listen(3000, function () {
+app.listen(port, function () {
   console.log('Example app listening on port 3000!');
 });
